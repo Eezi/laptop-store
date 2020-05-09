@@ -1,0 +1,15 @@
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 6rem, 4rem, 10rem;
+  line-height: 1.7;
+  font-family: sans-serif;
+  color: #555;
+  min-height: 100vh;
+  background: url('wood.jpg') no-repeat center;
+  background-size: cover;
+}

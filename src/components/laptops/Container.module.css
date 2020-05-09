@@ -1,0 +1,19 @@
+
+.Container {
+    width: 110rem;
+    margin: 0 auto;
+    
+}
+
+h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 530;
+    font-size: 7.5rem;
+    color: rgba(3, 3, 3, 0.6);
+    transform: skewY(-5deg);
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+    text-align: center;
+    position: relative;
+    word-spacing: 3px;
+}
