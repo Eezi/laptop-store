@@ -1,9 +1,4 @@
 
-.cards_container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 6rem;
-}
 
 .card {
     background: white;
@@ -90,6 +85,7 @@
 
 .card_link:hover {
     background-color: #67b26f;
+    cursor: pointer;
 }
 
 .emoji_left {

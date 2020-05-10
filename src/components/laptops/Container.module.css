@@ -1,8 +1,13 @@
 
 .Container {
     width: 110rem;
-    margin: 0 auto;
-    
+    margin: 0 auto; 
+}
+
+.cards_container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 6rem;  
 }
 
 h1 {
@@ -16,4 +21,19 @@ h1 {
     text-align: center;
     position: relative;
     word-spacing: 3px;
+}
+
+@media(max-width: 650px) {
+    .cards_container{
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 6rem;
+    }
+    .Container{
+        width: 35rem;
+    }
+    h1 {
+        font-size: 2rem;
+        font-weight: 400;
+        margin-top: 3rem;
+    }
 }
