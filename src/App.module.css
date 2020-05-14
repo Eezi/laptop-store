@@ -10,6 +10,14 @@ body {
   font-family: sans-serif;
   color: #555;
   min-height: 100vh;
-  background: url('wood.jpg') no-repeat center;
-  background-size: cover;
+  /*background: url('wood.jpg') no-repeat center;
+  background-size: cover;*/
+  background: rgba(202, 216, 213, 0.6);
+}
+svg {
+  color: rgba(3, 3, 3, 0.6);
+  float: right;
+  margin-right: 150px;
+  margin-top: 22px;
+  cursor: pointer;
 }

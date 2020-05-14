@@ -9,6 +9,8 @@ const Container = () =>  {
     return(
         <div className={styles.Container}>
             <h1>The Laptop Store</h1>
+                    
+            
             <div className={styles.cards_container}>{data.map((el) => {
                 return(<Laptops
                   key={el.id}

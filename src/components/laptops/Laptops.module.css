@@ -52,20 +52,25 @@
 .card_footer {
     display: flex;
     margin-top: 1.5rem;
+   
+}
+.card_footer a {
+    color: #ffffff;
+    text-decoration: none;
 }
 
 .card_price {
-    flex: 0 0 43.1%;
+    flex: 0  0 47%;
     background-color: #eee;
     border-top: 1px solid #e1e1e1;
-    padding: 1.25rem;
+    padding: 0.8rem;
     font-size: 1.8rem;
     font-weight: 700;
     text-align: center;
 }
 
 .card_link {
-    flex: 0 0 43.1%;
+    flex: 0 0 50%;
     background-color: #5aaa9d;
     border-top: 4px solid #fff;
     border-bottom: 4px solid #fff;
@@ -74,7 +79,7 @@
     font-weight: 700;
     text-transform: uppercase;
     text-decoration: none;
-    padding: 1.25rem 1rem;
+    padding: 1.5rem 2.88rem;
     text-align: center;
     display: flex;
     align-items: center;
