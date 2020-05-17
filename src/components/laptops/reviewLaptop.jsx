@@ -1,14 +1,16 @@
 import React from 'react';
 import styles from './reviewLaptop.module.css';
+import data from '../../data/data.json';
 
-const ReviewLaptop = () =>  {
+const ReviewLaptop = (props) =>  {
     return(
         <div>
             <div className={styles.containerr}>
                 <h1>The Laptop Store!</h1>
+                <a href="/" className={styles.store}>Back to store</a>
                 <div className={styles.laptopp}>
-                    <p className={styles.laptop_pricee}>3199€</p>
-                    <a href="/" class={styles.laptop_heroo}>Back</a>
+                    <p className={styles.laptop_pricee}>{props.price}€</p>
+                    
                     <div className={styles.laptop_heroo}>
                     <img className={styles.card_img} src={ require(`../../data/img/dell-xps-13.png`) }></img>
                     </div>
@@ -38,4 +40,4 @@ const ReviewLaptop = () =>  {
     );
 }
 
-export default ReviewLaptop ;
+export default ReviewLaptop;

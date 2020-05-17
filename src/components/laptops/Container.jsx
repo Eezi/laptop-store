@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Container.module.css';
-import { Laptops } from '..';
+import { Laptops, ReviewLaptop } from '..';
 import data from '../../data/data.json';
 
 
@@ -21,8 +21,8 @@ const Container = () =>  {
                   price={el.price}
                   img={el.image}
                   />
-                  
                 );
+                
             })}</div>
           
         </div>
