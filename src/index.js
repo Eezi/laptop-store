@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom'
-import { Container, Laptops, ReviewLaptop } from './components';
+import { Laptops, ReviewLaptop } from './components';
 
 
 ReactDOM.render(
@@ -11,6 +11,7 @@ ReactDOM.render(
     <Router>
     <Switch>
       <Route exact path="/" component={App} />
+      <Route path={"/laptops"} component={Laptops} />
       <Route path={"/review"} component={ReviewLaptop} />     
     </Switch>
   </Router>
