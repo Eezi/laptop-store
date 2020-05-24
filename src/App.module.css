@@ -14,17 +14,33 @@ body {
   background-size: cover;*/
   background: rgba(202, 216, 213, 0.6);
 }
-svg {
+/*svg {
   color: rgba(3, 3, 3, 0.6);
   float: right;
   margin-right: 150px;
   margin-top: 22px;
   cursor: pointer;
+  padding: 20px;
 }
+svg:hover {
+  text-decoration: underline;
+}*/
+
 
 .Container {
   width: 110rem;
   margin: 0 auto; 
+}
+.cart img {
+  float: right;
+  cursor: pointer;
+  width: 55px;
+  height: 60px;
+  padding: 40px;
+}
+.cart img:hover {
+  cursor: pointer;
+
 }
 
 .cards_container {
@@ -35,8 +51,8 @@ svg {
 
 h1 {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-weight: 530;
-  font-size: 7.5rem;
+  font-weight: 500;
+  font-size: 6rem;
   color: rgba(3, 3, 3, 0.6);
   transform: skewY(-5deg);
   margin-top: 6rem;

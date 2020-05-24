@@ -8,7 +8,7 @@ const Laptops = (props) =>  {
 
     const dataFilter = () => {
        for(var item of data){
-         if(item.id == props.id){
+         if(item.id === props.id){
              setItems(items.push(item));
             
         }

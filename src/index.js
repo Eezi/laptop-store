@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom'
-import { Laptops, ReviewLaptop } from './components';
+import { Laptops, ReviewLaptop, Orders } from './components';
 
 
 ReactDOM.render(
@@ -12,7 +12,8 @@ ReactDOM.render(
     <Switch>
       <Route exact path="/" component={App} />
       <Route path={"/laptops"} component={Laptops} />
-      <Route path={"/review"} component={ReviewLaptop} />     
+      <Route path={"/review"} component={ReviewLaptop} />
+      <Route path={"/orders"} component={Orders} />    
     </Switch>
   </Router>
   </React.StrictMode>,

@@ -15,6 +15,7 @@
 
 
 .containerr {
+    padding-top: 100px;
     width: 110rem;
     margin: 0 auto;
 }
@@ -130,8 +131,8 @@
     line-height: 1.8;
 }
 
-.laptop_link:link,
-.laptop_link:visited {
+
+.laptop_link {
     display: block;
     background-color: #5aaa9d;
     color: white;
@@ -145,10 +146,14 @@
     align-items: center;
     justify-content: center;
     transition: all .3s;
+
+}
+laptop_link:visited {
+    text-decoration: none;
 }
 
-.laptop_link:hover,
-.laptop_link:active {
+.laptop_link:hover {
+
     background-color: #67b26f;
 }
 
@@ -158,15 +163,6 @@
     font-size: 1.2rem;
 }
 
-.laptop_source a:link,
-.laptop_source a:visited {
-    color: #999;
-}
-
-.laptop_source a:hover,
-.laptop_source a:active {
-    color: #555;
-}
 
 .emoji_leftt {
     font-size: 2rem;

@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from './reviewLaptop.module.css';
+import { Navbar } from '..';
+import { Link } from 'react-router-dom';
 
 const ReviewLaptop = (props) => {
     
@@ -8,9 +10,9 @@ const ReviewLaptop = (props) => {
 
     return(
         <div>
+            <Navbar />
             <div className={styles.containerr}>
-                <h1>The Overview Of Laptop!</h1>
-                <a href="/" className={styles.store}>Back to store</a>
+                
                 <div className={styles.laptopp}>
                     <p className={styles.laptop_pricee}>{info.price}€</p>
                     
@@ -28,8 +30,14 @@ const ReviewLaptop = (props) => {
                     <p className={styles.laptop_descriptionn}>
                        {info.description}
                     </p>
-                    <a href="/" className={styles.laptop_link} >Buy now for {info.price}€</a>
-                  
+                    <Link style={{textDecoration: 'none'}} to={{
+                        pathname: "/orders",
+                        state: {
+                            info
+                        }
+                    }}>
+                        <p className={styles.laptop_link} >Buy now for {info.price}€</p>
+                    </Link>
                    
                 </div>
             </div>
