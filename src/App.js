@@ -3,10 +3,11 @@ import styles from './App.module.css';
 import {  Laptops, Orders, Navbar } from './components';
 import { Link } from 'react-router-dom';
 import data from './data/data.json'
+import firebase from './Config';
 
 
 function App() {
-  
+
   return (
     <div className="App">
       <Navbar />

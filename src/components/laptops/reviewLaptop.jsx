@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './reviewLaptop.module.css';
 import { Navbar } from '..';
 import { Link } from 'react-router-dom';
+import firebase from '../../Config';
 
 const ReviewLaptop = (props) => {
     
+    
    let item = props.location.state;
    let info = item.items[0];
+
+   const hadleOrder = (e) => {
+       let order = firebase.database().ref('orders').orderByKey().limitToLast(100);
+       firebase.database().ref('orders').push(info);
+   }
 
     return(
         <div>
@@ -36,7 +43,7 @@ const ReviewLaptop = (props) => {
                             info
                         }
                     }}>
-                        <p className={styles.laptop_link} >Buy now for {info.price}€</p>
+                        <p onClick={hadleOrder} className={styles.laptop_link} >Buy now for {info.price}€</p>
                     </Link>
                    
                 </div>
