@@ -19,7 +19,7 @@ function useOrders() {
                 setOrder(newOrder);
             })
     
-    }, []);
+    }, [])
     
     return order;
 }
