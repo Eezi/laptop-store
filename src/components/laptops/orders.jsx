@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import styles from './orders.module.css';
 import { Navbar } from '..';
-import firebase from '../../Config';
+import * as firebase from 'firebase';
+import 'firebase/firestore';
 
 function useOrders() {
     const [order, setOrder] = useState([]);
 
     useEffect(() => {
         firebase
-            .firebase()
-            .collection('order')
+            .firestore()
+            .collection('orders')
             .onSnapshot((snapshot) => {
                 const newOrder = snapshot.docs.map((doc) => ({
                     id: doc.id,
                     ...doc.data()
                 }))
-
+                console.log(newOrder)
                 setOrder(newOrder);
             })
     
@@ -34,17 +35,34 @@ const Orders = (props) => {
    }else {
        order = null;
    }
+   const deleteOrder = () => {
+    let id;
+    for(var i in fireOrder){
+    console.log(i)
+    }
+
+    //firebase.collection('orders').doc(id).delete();
+   }
   
     return (
         <div className={styles.koko}>
             <Navbar />
-            <div className={order ? styles.order : null}>
-                   <p>
-                    {order ? order.productName : null}<br />
-                    {order ? order.price : null}€
-                   </p>
-                   <button onClick={() => console.log(fireOrder)}></button>
-            </div>
+            <ol>
+                {fireOrder.map((order) => 
+
+               <li key={order.id}>
+                    <div className={fireOrder ? styles.order : null}>
+                        <p>
+                            {fireOrder ? order.productName : null}<br />
+                            {fireOrder ? order.price : null}€
+                            <button onClick={() => console.log(order.id)}>X</button>
+                        </p>
+                        
+                    </div>
+                </li>
+                 )}
+            </ol>
+            
         </div>
     );
 

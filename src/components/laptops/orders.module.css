@@ -1,16 +1,27 @@
 
 .order{
-    height: 90px;
+    height: 105px;
     width: 95%;
     border: solid 1px rgb(163, 163, 163);
     box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.1);
     font-size: 20px;
-    margin-top: 70px;
+    top: 70px;
+    margin-top: 30px;
     margin-left: 32px;
     align-items: center;
     
-   position: relative;
+    position: relative;
+}
+.order button {
+    float: right;
+    margin-right: 20px;
+    bottom: 50px;
 }
 .order p {
     padding-left: 20px;
+    
+}
+.koko li {
+    align-items: center;
+    list-style: none;
 }

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './reviewLaptop.module.css';
 import { Navbar } from '..';
 import { Link } from 'react-router-dom';
-import firebase from '../../Config';
+import firebase from '../../firebase';
 
 const ReviewLaptop = (props) => {
     
@@ -10,9 +10,11 @@ const ReviewLaptop = (props) => {
    let item = props.location.state;
    let info = item.items[0];
 
-   const hadleOrder = (e) => {
-       let order = firebase.database().ref('orders').orderByKey().limitToLast(100);
-       firebase.database().ref('orders').push(info);
+   const hadleOrder = () => {
+
+        firebase.firestore().collection('orders').add(info)
+       /*let order = firebase.firestore().ref('orders').orderByKey().limitToLast(100);
+       firebase.firestore().ref('orders').push(info);*/
    }
 
     return(
