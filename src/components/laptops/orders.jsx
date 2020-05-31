@@ -17,6 +17,7 @@ function useOrders() {
                     ...doc.data()
                 }))
                 console.log(newOrder)
+
                 setOrder(newOrder);
             })
     
@@ -35,12 +36,9 @@ const Orders = (props) => {
    }else {
        order = null;
    }
-   const deleteOrder = () => {
-    let id;
-    for(var i in fireOrder){
-    console.log(i)
-    }
-
+   const deleteOrder = (e) => {
+   // firebase.collection('orders').doc(order.id).delete();
+   
     //firebase.collection('orders').doc(id).delete();
    }
   
@@ -55,7 +53,7 @@ const Orders = (props) => {
                         <p>
                             {fireOrder ? order.productName : null}<br />
                             {fireOrder ? order.price : null}€
-                            <button onClick={() => console.log(order.id)}>X</button>
+                            <button id={order.id} onClick={deleteOrder}>X</button>
                         </p>
                         
                     </div>

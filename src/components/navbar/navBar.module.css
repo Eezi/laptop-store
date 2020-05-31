@@ -34,3 +34,22 @@ ul {
     
     color: #333;
 }
+
+@media(max-width: 650px) {
+    .navi {
+        text-align: center;
+        height: 50px;
+        width: 100%;
+        position: fixed;
+        overflow: hidden;
+        background-color: #5aaa9d;
+        font-size: 25px;
+        color: #333;
+    }
+    
+    .navi ul{
+   
+     text-align: center;
+    }
+   
+}

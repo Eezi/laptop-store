@@ -66,14 +66,15 @@ h1 {
   .cards_container{
   grid-template-columns: repeat(1, 1fr);
   grid-gap: 6rem;
+
   }
   .Container{
       width: 35rem;
   }
   h1 {
-      font-size: 2rem;
+      font-size: 3.5rem;
       font-weight: 400;
-      margin-top: 3rem;
+      margin-top: 7rem;
   }
 }
 
