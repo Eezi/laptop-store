@@ -8,18 +8,19 @@ function useOrders() {
     const [order, setOrder] = useState([]);
 
     useEffect(() => {
-        firebase
-            .firestore()
-            .collection('orders')
+      const db = firebase.firestore();
+            
+            db.collection('orders')
             .onSnapshot((snapshot) => {
                 const newOrder = snapshot.docs.map((doc) => ({
                     id: doc.id,
                     ...doc.data()
                 }))
-                console.log(newOrder)
 
                 setOrder(newOrder);
             })
+
+            
     
     }, [])
     
@@ -28,6 +29,7 @@ function useOrders() {
 
 const Orders = (props) => {
     const fireOrder = useOrders();
+    const IDS = [];
    
    let item = props.location.state;
    let order;
@@ -36,10 +38,27 @@ const Orders = (props) => {
    }else {
        order = null;
    }
-   const deleteOrder = (e) => {
-   // firebase.collection('orders').doc(order.id).delete();
+
+   const db = firebase.firestore();
+   db.collection('orders').get().then((snapshot) => {
+    
+    const dbID = snapshot.docs.map((doc) => {
+         IDS.push(doc.id);
+     })
+     
+ })
    
-    //firebase.collection('orders').doc(id).delete();
+   const deleteOrder = () => {
+    const db = firebase.firestore();
+
+    db.collection('orders').doc().delete().then(function() {
+        console.log('Poistaminen onnistui!');
+        console.log(IDS[0])
+
+    }).catch(function(error) {
+        console.log('Error tapahtui poiston aikana ', error);
+    });
+ 
    }
   
     return (
@@ -53,7 +72,7 @@ const Orders = (props) => {
                         <p>
                             {fireOrder ? order.productName : null}<br />
                             {fireOrder ? order.price : null}€
-                            <button id={order.id} onClick={deleteOrder}>X</button>
+                            <button id={order.IDS} onClick={deleteOrder}>X</button>
                         </p>
                         
                     </div>
