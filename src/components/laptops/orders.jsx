@@ -44,16 +44,20 @@ const Orders = (props) => {
     
     const dbID = snapshot.docs.map((doc) => {
          IDS.push(doc.id);
+        
      })
      
  })
    
-   const deleteOrder = () => {
+   const deleteOrder = (e) => {
     const db = firebase.firestore();
-
-    db.collection('orders').doc().delete().then(function() {
+    let id = e.target.id;
+    console.log(id)
+    
+    
+    db.collection('orders').doc(IDS[id]).delete().then(function() {
         console.log('Poistaminen onnistui!');
-        console.log(IDS[0])
+       console.log(IDS[id]);
 
     }).catch(function(error) {
         console.log('Error tapahtui poiston aikana ', error);
@@ -72,7 +76,7 @@ const Orders = (props) => {
                         <p>
                             {fireOrder ? order.productName : null}<br />
                             {fireOrder ? order.price : null}€
-                            <button id={order.IDS} onClick={deleteOrder}>X</button>
+                            <button id={order.id} onClick={deleteOrder}>X</button>
                         </p>
                         
                     </div>
