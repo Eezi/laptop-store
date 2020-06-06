@@ -54,17 +54,20 @@ const Orders = (props) => {
     let id = e.target.id;
     console.log(id)
     
-    
+    if(IDS.length === 1) {
+        db.collection('orders').doc(IDS[0]).delete()
+        console.log('Poistaminen onnistui!');
+
+    } else {
     db.collection('orders').doc(IDS[id]).delete().then(function() {
         console.log('Poistaminen onnistui!');
-       console.log(IDS[id]);
 
     }).catch(function(error) {
         console.log('Error tapahtui poiston aikana ', error);
     });
- 
+    }
    }
-  
+   
     return (
         <div className={styles.koko}>
             <Navbar />
