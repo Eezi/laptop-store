@@ -3,44 +3,47 @@ import styles from './Laptops.module.css';
 import { Link } from 'react-router-dom';
 import data from '../../data/data.json';
 
-const Laptops = (props) =>  {
+const Laptops = ({ data }) =>  {
     const [items, setItems ] = useState([]); 
 
-    const dataFilter = () => {
+   const dataFilter = () => {
        for(var item of data){
-         if(item.id === props.id){
+         if(item.id === data.id){
              setItems(items.push(item));
             
         }
        }
     }
-     
+
+    const id = data.id;
+   
     return(
-       
-        <div className={styles.cards_container}>
-            
+
+           <div className={styles.cards_container}>
+
             <div className={styles.card}>
                 <div className={styles.card_hero}>
-                    <img className={styles.card_img} src={ require(`../../data/img/${props.img}`) }></img>
+                    <img className={styles.card_img} src={ require(`../../data/img/${data.image}`) }></img>
                 </div>
-                    <h2 className={styles.card_name}>{props.name}</h2>
-                    <p className={styles.card_detail}><span className={styles.emoji_left}>🖥</span> {props.screen}</p>
-                    <p className={styles.card_detail}><span className={styles.emoji_left}>🧮</span> {props.cpu}</p>
+                    <h2 className={styles.card_name}>{data.productName}</h2>
+                    <p className={styles.card_detail}><span className={styles.emoji_left}>🖥</span> {data.screen}</p>
+                    <p className={styles.card_detail}><span className={styles.emoji_left}>🧮</span> {data.cpu}</p>
                 <div className={styles.card_footer}>
-                    <p className={styles.card_price} >{props.price}€</p>
+                    <p className={styles.card_price} >{data.price}€</p>
 
                     <Link to={{
-                        pathname:"/review",
+                        pathname:`/review/${data.id}`,
                         state: {
                            items
                         }
                         }}>
-                        <p className={styles.card_link} onClick={dataFilter}>Check it out </p>
+                        <p className={styles.card_link} >Check it out </p>
                     </Link>
 
                 </div>
             </div>
-        </div>   
+            
+        </div> 
     );
 }
 

@@ -15,6 +15,20 @@ const client = new ApolloClient({
   })
 })
 
+const query = gql`
+  query{
+    allLaptops{
+      id
+    }
+  }
+`
+client.query({ query })
+  .then((response) => {
+    
+    const id = response.data.allLaptops.map(i => i.id)
+    console.log(id) 
+  })
+
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
@@ -22,7 +36,7 @@ ReactDOM.render(
     <Switch>
       <Route exact path="/" component={App} />
       <Route path={"/laptops"} component={Laptops} />
-      <Route path={"/review"} component={ReviewLaptop} />
+      <Route path={"/review/"} component={ReviewLaptop} />
       <Route path={"/orders"} component={Orders} />    
     </Switch>
   </Router>

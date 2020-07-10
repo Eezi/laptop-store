@@ -1,10 +1,11 @@
 import React from 'react';
 import styles from './App.module.css';
-import {  Laptops, Orders, Navbar } from './components';
+import {  Laptops, Orders, Navbar, Review } from './components';
 import { Link } from 'react-router-dom';
 import data from './data/data.json'
 import firebase from './firebase';
-import { gql, useQuery } from '@apollo/client'
+import { gql, useQuery } from '@apollo/client';
+import { BrowserRouter as Router, Route } from 'react-router-dom'; 
 
 const ALL_LAPTOPS = gql`
   {
@@ -30,7 +31,10 @@ function App() {
   if(result.loading) {
     return <div>Loading...</div>
   }
-  console.log(result)
+  if(result.error) {
+    return <div>Something went wrong!</div>
+  }
+ 
   return (
     <div className="App">
       <Navbar />
@@ -40,25 +44,16 @@ function App() {
             <h1>The Laptop Store</h1>
                
             
-            <div className={styles.cards_container}>{data.map((el) => {
-                return(<Laptops
-                  key={el.id}
-                  id={el.id}
-                  name={el.productName}
-                  cpu={el.cpu}
-                  image={el.image}
-                  screen={el.screen}
-                  price={el.price}
-                  img={el.image}
-                  />
-                );
+            <div className={styles.cards_container}>
+              {result.data.allLaptops.map(laptop => (
                 
-            })}</div>
+                <Laptops key={laptop.id} data={laptop} />
+                
+              )
+              )}
+            </div>
           
         </div>
-
-       
-       
     </div>
   );
 }
