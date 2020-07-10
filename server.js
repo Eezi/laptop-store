@@ -1,4 +1,5 @@
 const { ApolloServer, gql } = require('apollo-server');
+const cors = require('cors');
 
 
 let laptops = [
@@ -94,3 +95,6 @@ const server = new ApolloServer({
     resolvers,
 })
 
+server.listen().then(({ url }) => {
+    console.log(`Server is ready at ${url}`)
+} )

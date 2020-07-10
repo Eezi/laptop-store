@@ -4,10 +4,20 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom'
 import { Laptops, ReviewLaptop, Orders } from './components';
+import { 
+  ApolloClient, ApolloProvider, HttpLink, InMemoryCache, gql
+} from '@apollo/client'
 
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  link: new HttpLink({
+    uri: 'http://localhost:4000',
+  })
+})
 
 ReactDOM.render(
   <React.StrictMode>
+    <ApolloProvider client={client}>
     <Router>
     <Switch>
       <Route exact path="/" component={App} />
@@ -16,6 +26,7 @@ ReactDOM.render(
       <Route path={"/orders"} component={Orders} />    
     </Switch>
   </Router>
+  </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
