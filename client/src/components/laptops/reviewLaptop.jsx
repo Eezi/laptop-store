@@ -3,16 +3,31 @@ import styles from './reviewLaptop.module.css';
 import { Navbar } from '..';
 import { Link } from 'react-router-dom';
 import firebase from '../../firebase';
+import { useLazyQuery, gql } from '@apollo/client';
+
+const REVIEW_QUERY = gql`
+    query laptopById($id: Int!) {
+        findLaptop(id: $id) {
+            productName
+            id
+            price
+            cpu
+            image
+            ram
+            storage
+            screen
+            description
+        }
+    }
+`;
 
 const ReviewLaptop = (props) => {
-    
-    
-   let item = props.location.state;
-   let info = item.items[0];
-
+    const [getLaptop, result] = useLazyQuery(REVIEW_QUERY);
+   //const [laptop, setLaptop] = useState(null);
+    const info = props.location.state.data;
    const hadleOrder = () => {
 
-        firebase.firestore().collection('orders').add(info)
+     //   firebase.firestore().collection('orders').add(info)
        /*let order = firebase.firestore().ref('orders').orderByKey().limitToLast(100);
        firebase.firestore().ref('orders').push(info);*/
    }
@@ -20,6 +35,7 @@ const ReviewLaptop = (props) => {
     return(
         <div>
             <Navbar />
+            
             <div className={styles.containerr}>
                 
                 <div className={styles.laptopp}>

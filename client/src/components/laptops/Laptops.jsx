@@ -34,7 +34,7 @@ const Laptops = ({ data }) =>  {
                     <Link to={{
                         pathname:`/review/${data.id}`,
                         state: {
-                           items
+                           data
                         }
                         }}>
                         <p className={styles.card_link} >Check it out </p>
