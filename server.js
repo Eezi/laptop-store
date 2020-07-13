@@ -1,5 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
+require('dotenv').config()
 import { ApolloServer, gql} from "apollo-server-express";
 import {resolvers} from "./schema";
 import { typeDefs } from "./schema";
@@ -12,14 +13,14 @@ const server = async () => {
     })
     console.log(resolvers)
     server.applyMiddleware({app});
-    const url = 'mongodb+srv://tomi:nakki123@cluster0-q2yoo.mongodb.net/store?retryWrites=true&w=majority';
+    const url = process.env.MONGODB_URI;
 
     try {
 
-   // await mongoose.connect(url, { useNewUrlParser: true });
+   await mongoose.connect(url, { useNewUrlParser: true }, () => console.log('connected to database') )
 
-    }catch(error){
-        console.log(error)
+    }catch(err){
+        console.log(err)
     }
 
     app.get('/', (req, res) => res.send('hello world'))
