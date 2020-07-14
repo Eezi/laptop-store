@@ -1,11 +1,7 @@
 import React from 'react';
 import styles from './App.module.css';
-import {  Laptops, Orders, Navbar, Review } from './components';
-import { Link } from 'react-router-dom';
-import data from './data/data.json'
-import firebase from './firebase';
+import {  Laptops, Navbar } from './components';
 import { gql, useQuery } from '@apollo/client';
-import { BrowserRouter as Router, Route } from 'react-router-dom'; 
 
 const ALL_LAPTOPS = gql`
   {
@@ -31,8 +27,10 @@ function App() {
   if(result.loading) {
     return <div>Loading...</div>
   }
+  
   if(result.error) {
-    return <div>Something went wrong!</div>
+    return <h1 style={{textAlign: "center"}}>Something went wrong!</h1> 
+    
   }
  
   return (

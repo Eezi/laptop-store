@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styles from './Laptops.module.css';
 import { Link } from 'react-router-dom';
-import data from '../../data/data.json';
 
 const Laptops = ({ data }) =>  {
     const [items, setItems ] = useState([]); 

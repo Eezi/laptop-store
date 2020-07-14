@@ -41,8 +41,8 @@ export const typeDefs = gql`
 export const resolvers = {
     Query: {
         laptopCount: () => laptops.length,
-        allLaptops: () => laptops,
-        laptops: () => Lappari.find(),
+        //allLaptops: () => laptops,
+        allLaptops: () => Lappari.find(),
         findLaptop: (root, args) => 
             laptops.find(laptop => laptop.id === args.id),
         
