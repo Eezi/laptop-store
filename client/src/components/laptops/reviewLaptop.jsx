@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './reviewLaptop.module.css';
 import { Navbar } from '..';
 import { Link } from 'react-router-dom';
-import firebase from '../../firebase';
 import { useLazyQuery, gql } from '@apollo/client';
 
 const REVIEW_QUERY = gql`
@@ -23,14 +22,13 @@ const REVIEW_QUERY = gql`
 
 const ReviewLaptop = (props) => {
     const [getLaptop, result] = useLazyQuery(REVIEW_QUERY);
-   //const [laptop, setLaptop] = useState(null);
+   const [laptop, setLaptop] = useState();
+ 
+   
     const info = props.location.state.data;
+   console.log('Propsit on: ', props)
    const hadleOrder = () => {
-
-     //   firebase.firestore().collection('orders').add(info)
-       /*let order = firebase.firestore().ref('orders').orderByKey().limitToLast(100);
-       firebase.firestore().ref('orders').push(info);*/
-   }
+    }
 
     return(
         <div>
@@ -61,10 +59,11 @@ const ReviewLaptop = (props) => {
                             info
                         }
                     }}>
-                        <p onClick={hadleOrder} className={styles.laptop_link} >Buy now for {info.price}€</p>
+                        <p onClick={() => console.log()} className={styles.laptop_link} >Buy now for {info.price}€</p>
                     </Link>
                    
                 </div>
+             
             </div>
                 
         </div>

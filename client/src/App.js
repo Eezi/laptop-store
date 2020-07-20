@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './App.module.css';
-import {  Laptops, Navbar } from './components';
+import {  Laptops, Navbar, Orders, ReviewLaptop } from './components';
 import { gql, useQuery } from '@apollo/client';
+
 
 const ALL_LAPTOPS = gql`
   {
@@ -24,7 +25,7 @@ function App() {
 
   const result = useQuery(ALL_LAPTOPS);
 
-  if(result.loading) {
+  if(result.loading) {  
     return <div>Loading...</div>
   }
   
@@ -35,7 +36,7 @@ function App() {
  
   return (
     <div className="App">
-      <Navbar />
+          <Navbar />
   
         <div className={styles.Container}>
        
@@ -52,6 +53,7 @@ function App() {
             </div>
           
         </div>
+
     </div>
   );
 }

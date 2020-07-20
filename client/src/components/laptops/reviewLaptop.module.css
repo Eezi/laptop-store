@@ -17,7 +17,7 @@
 .containerr {
     padding-top: 100px;
     width: 110rem;
-    margin: 0 auto;
+    margin: auto 12px;
 }
 
 .laptopp {
@@ -42,18 +42,6 @@
     
 }
 
-.laptop_heroo::before {
-    content: '';
-    display: block;
-    height: 99%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-image: linear-gradient(to right bottom, #67b26f, #4ca2cd);
-    opacity: .4;
-}
-
 .laptop_img {
     width: 100%;
     display: block;
@@ -65,8 +53,8 @@
     right: -3rem;
     z-index: 100;
     background: linear-gradient(to right bottom, #67b26f, #4ca2cd);
-    height: 14rem;
-    width: 14rem;
+    height: 12rem;
+    width: 12rem;
     border: 6px solid white;
     border-radius: 50%;
     transform: rotate(15deg);
@@ -167,4 +155,12 @@ laptop_link:visited {
 .emoji_leftt {
     font-size: 2rem;
     margin-right: 1rem;
+}
+
+@media(max-width: 650px) {
+    .containerr{
+        width: 100%;
+        
+    }
+
 }

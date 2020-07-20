@@ -20,7 +20,7 @@ export const typeDefs = gql`
     type Query {
         laptopCount: Int!
         allLaptops: [Laptop!]!
-        findLaptop(id: Int!): Laptop
+        findLaptop(productName: String!): Laptop
         laptops: [Laptop!]!
     }
 
@@ -43,8 +43,7 @@ export const resolvers = {
         laptopCount: () => laptops.length,
         //allLaptops: () => laptops,
         allLaptops: () => Lappari.find(),
-        findLaptop: (root, args) => 
-            laptops.find(laptop => laptop.id === args.id),
+        findLaptop: (root, args) => Lappari.findOne({ productName: args.productName })
         
     },
     Mutation: {

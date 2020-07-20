@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Route, BrowserRouter as Router, Switch, Link } from 'react-router-dom'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
+
 import { Laptops, ReviewLaptop, Orders } from './components';
 import { 
   ApolloClient, ApolloProvider, HttpLink, InMemoryCache
@@ -18,16 +19,18 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <React.StrictMode>
+
     <ApolloProvider client={client}>
     <Router>
     <Switch>
       <Route exact path="/" component={App} />
       <Route path={"/laptops"} component={Laptops} />
-      <Route path={"/review/"} component={ReviewLaptop} />
+      <Route path={"/review"} component={ReviewLaptop} />
       <Route path={"/orders"} component={Orders} />    
     </Switch>
-  </Router>
+    </Router>
   </ApolloProvider>
+
   </React.StrictMode>,
   document.getElementById('root')
 );
