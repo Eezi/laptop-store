@@ -31,8 +31,10 @@ function App() {
   
   if(result.error) {
     return <h1 style={{textAlign: "center"}}>Something went wrong!</h1> 
-    
+   
+   
   }
+  
  
   return (
     <div className="App">

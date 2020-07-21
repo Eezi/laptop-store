@@ -23,3 +23,9 @@ export const Lappari = mongoose.model("Lappari",
     price: String,
     description: String 
  });
+
+ export const Order = mongoose.model("Order",
+ {
+     productName: String,
+     price: String
+ } );

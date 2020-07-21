@@ -1,6 +1,6 @@
 const { gql } = require('apollo-server-express');
 const cors = require('cors');
-import { Lappari } from "./Laptop";
+import { Lappari, Order } from "./Laptop";
 import mongoose from 'mongoose';
 
 
@@ -27,13 +27,13 @@ export const typeDefs = gql`
     type Mutation {
         addLaptop(
             productName: String!
-            image: String!
-            cpu: String!
-            ram: String!
-            storage: String!
-            screen: String!
+            image: String
+            cpu: String
+            ram: String
+            storage: String
+            screen: String
             price: String!
-            description: String! 
+            description: String 
         ): Laptop
     }
 `;
@@ -49,23 +49,12 @@ export const resolvers = {
     Mutation: {
         addLaptop: async(_, { 
             productName,
-            image,
-            cpu,
-            ram,
-            storage,
-            screen,
             price,
-            description,  
+            
          }) => {
-             const item = new Lappari({
+             const item = new Order({
                 productName,
-                image,
-                cpu,
-                ram,
-                storage,
-                screen,
                 price,
-                description,  
              });
              await item.save();
              return item;

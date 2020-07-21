@@ -2,33 +2,36 @@ import React, { useState, useEffect } from 'react';
 import styles from './reviewLaptop.module.css';
 import { Navbar } from '..';
 import { Link } from 'react-router-dom';
-import { useLazyQuery, gql } from '@apollo/client';
+import { useMutation, gql } from '@apollo/client';
 
-const REVIEW_QUERY = gql`
-    query laptopById($id: Int!) {
-        findLaptop(id: $id) {
-            productName
-            id
-            price
-            cpu
-            image
-            ram
-            storage
-            screen
-            description
+const CREATE_ORDER = gql`
+    mutation addLaptop(
+        $id: String!,
+        $productName: String!,
+        $price: String!) {
+          productName
+          id
+          price
+           
         }
-    }
+    
 `;
 
 const ReviewLaptop = (props) => {
-    const [getLaptop, result] = useLazyQuery(REVIEW_QUERY);
-   const [laptop, setLaptop] = useState();
+   const [ createOrder ] = useMutation(CREATE_ORDER);
+   const [price, setPrice] = useState('');
+   const [productName, setProductName] = useState('');
+   const [id, setId] = useState('');
  
-   
+   /*createOrder({ variables: { productName, price, id } })*/
     const info = props.location.state.data;
-   console.log('Propsit on: ', props)
+  
    const hadleOrder = () => {
     }
+    /*
+    setPrice(info.price);
+    setId(info.id);
+    setProductName(info.productName);*/
 
     return(
         <div>
