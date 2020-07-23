@@ -3,40 +3,57 @@ import styles from './reviewLaptop.module.css';
 import { Navbar } from '..';
 import { Link } from 'react-router-dom';
 import { useMutation, gql } from '@apollo/client';
-
-const CREATE_ORDER = gql`
-    mutation addLaptop(
-        $id: String!,
-        $productName: String!,
-        $price: String!) {
-          productName
-          id
-          price
-           
-        }
-    
-`;
+import { CREATE_ORDER } from '../../queries';
 
 const ReviewLaptop = (props) => {
-   const [ createOrder ] = useMutation(CREATE_ORDER);
    const [price, setPrice] = useState('');
    const [productName, setProductName] = useState('');
-   const [id, setId] = useState('');
- 
-   /*createOrder({ variables: { productName, price, id } })*/
-    const info = props.location.state.data;
-  
-   const hadleOrder = () => {
+   const [errorMessage, setErrorMessage] = useState(null);
+
+   const [ createOrder ] = useMutation(CREATE_ORDER,
+   { onError: (error) => {
+        setErrorMessage(error.graphQLErrors[0].message)
+      }
+   });
+
+   const notify = (message) => {
+    setErrorMessage(message)
+    setTimeout(() => {
+      setErrorMessage(null)
+    }, 10000)
+  }
+
+  const Notify = ({errorMessage}) => {
+    if ( !errorMessage ) {
+      return null
     }
-    /*
-    setPrice(info.price);
-    setId(info.id);
-    setProductName(info.productName);*/
+    return (
+      <div style={{color: 'red'}}>
+        {errorMessage}
+      </div>
+    )
+  }
+  
+ 
+   const info = props.location.state.data;
+   
+  
+   const handleOrder = async() => {
+        let productName = info.productName;
+        let price = info.price
+
+        createOrder({ variables: { productName, price } })
+
+        setPrice(price);
+        setProductName(productName);
+    }
+    
+   
 
     return(
         <div>
             <Navbar />
-            
+            <Notify errorMessage={errorMessage} />
             <div className={styles.containerr}>
                 
                 <div className={styles.laptopp}>
@@ -56,13 +73,8 @@ const ReviewLaptop = (props) => {
                     <p className={styles.laptop_descriptionn}>
                        {info.description}
                     </p>
-                    <Link style={{textDecoration: 'none'}} to={{
-                        pathname: "/orders",
-                        state: {
-                            info
-                        }
-                    }}>
-                        <p onClick={() => console.log()} className={styles.laptop_link} >Buy now for {info.price}€</p>
+                    <Link style={{textDecoration: 'none'}} to="/orders" >
+                        <p onClick={handleOrder} className={styles.laptop_link} >Buy now for {info.price}€</p>
                     </Link>
                    
                 </div>

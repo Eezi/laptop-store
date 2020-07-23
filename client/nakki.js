@@ -8,6 +8,10 @@ const orders = [
 ]
 
 const calculateSum = orders.reduce((sum, order) => {
-    console.log('Hey', sum, order);
+   
     return sum + order.amount;
 }, 0)
+
+let name = 'Tomi';
+const nakki = name.split('').reverse().join('')
+console.log(nakki)

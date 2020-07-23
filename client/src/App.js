@@ -1,25 +1,8 @@
 import React from 'react';
 import styles from './App.module.css';
-import {  Laptops, Navbar, Orders, ReviewLaptop } from './components';
-import { gql, useQuery } from '@apollo/client';
-
-
-const ALL_LAPTOPS = gql`
-  {
-    allLaptops {
-      productName
-      id
-      price
-      cpu
-      image
-      ram
-      storage
-      screen
-      description
-    }
-  }
-`;
-
+import {  Laptops, Navbar } from './components';
+import { useQuery } from '@apollo/client';
+import { ALL_LAPTOPS } from './queries';
 
 function App() {
 

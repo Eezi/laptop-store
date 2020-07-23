@@ -124,7 +124,7 @@
     display: block;
     background-color: #5aaa9d;
     color: white;
-    font-size: 1.6rem;
+    font-size: 1.7rem;
     font-weight: 700;
     text-transform: uppercase;
     text-decoration: none;
@@ -134,7 +134,8 @@
     align-items: center;
     justify-content: center;
     transition: all .3s;
-
+   
+    border: none;
 }
 laptop_link:visited {
     text-decoration: none;

@@ -6,26 +6,33 @@ import mongoose from 'mongoose';
 
 export const typeDefs = gql`
     type Laptop {
-        id: ID!
+        id: ID
         productName: String!
-        image: String!
-        cpu: String!
-        ram: String!
-        storage: String!
-        screen: String!
+        image: String
+        cpu: String
+        ram: String
+        storage: String
+        screen: String
         price: String!
-        description: String!
+        description: String
+    }
+
+    type Order {
+        id: ID
+        productName: String!
+        price: String!
     }
 
     type Query {
         laptopCount: Int!
         allLaptops: [Laptop!]!
+        allOrders: [Order!]!
         findLaptop(productName: String!): Laptop
         laptops: [Laptop!]!
     }
 
     type Mutation {
-        addLaptop(
+        addOrder(
             productName: String!
             image: String
             cpu: String
@@ -43,18 +50,21 @@ export const resolvers = {
         laptopCount: () => laptops.length,
         //allLaptops: () => laptops,
         allLaptops: () => Lappari.find(),
+        allOrders: () => Order.find(),
         findLaptop: (root, args) => Lappari.findOne({ productName: args.productName })
         
     },
     Mutation: {
-        addLaptop: async(_, { 
+        addOrder: async(_, { 
             productName,
-            price,
+            price
+            
             
          }) => {
              const item = new Order({
                 productName,
-                price,
+                price
+                
              });
              await item.save();
              return item;
