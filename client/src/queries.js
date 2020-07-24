@@ -1,4 +1,4 @@
-import { gql, useMutation } from '@apollo/client';
+import { gql } from '@apollo/client';
 
 export const ALL_LAPTOPS = gql`
   {
@@ -31,6 +31,21 @@ export const CREATE_ORDER = gql`
         addOrder(
           productName: $productName,
           price: $price,
+         
+        ) {
+            productName
+            price
+            
+        }  
+    }    
+`;
+
+export const REMOVE_ORDER = gql`
+    mutation deleteOrder($productName: String!, $price: String!) {
+        removeOrder(
+          productName: $productName,
+          price: $price,
+          
          
         ) {
             productName

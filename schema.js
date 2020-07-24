@@ -42,7 +42,17 @@ export const typeDefs = gql`
             price: String!
             description: String 
         ): Laptop
+
+        removeOrder(
+            id: ID
+            price: String!
+            productName: String!
+        ):Order
     }
+
+    
+       
+    
 `;
 
 export const resolvers = {
@@ -51,7 +61,8 @@ export const resolvers = {
         //allLaptops: () => laptops,
         allLaptops: () => Lappari.find(),
         allOrders: () => Order.find(),
-        findLaptop: (root, args) => Lappari.findOne({ productName: args.productName })
+        findLaptop: (root, args) => Lappari.findOne({ productName: args.productName }),
+      
         
     },
     Mutation: {
@@ -68,7 +79,19 @@ export const resolvers = {
              });
              await item.save();
              return item;
-         }
+         },
+       
+        removeOrder: async(_, {
+            id,
+            productName,
+            price
+        }) => {
+            return await Order.findOneAndRemove({
+                id,
+                productName,
+                price
+            });
+        }
     }
 }
 

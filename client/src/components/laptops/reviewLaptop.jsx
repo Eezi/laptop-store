@@ -1,20 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from './reviewLaptop.module.css';
 import { Navbar } from '..';
 import { Link } from 'react-router-dom';
-import { useMutation, gql } from '@apollo/client';
-import { CREATE_ORDER } from '../../queries';
+import { useMutation } from '@apollo/client';
+import { CREATE_ORDER, ALL_ORDERS } from '../../queries';
 
 const ReviewLaptop = (props) => {
    const [price, setPrice] = useState('');
    const [productName, setProductName] = useState('');
    const [errorMessage, setErrorMessage] = useState(null);
 
-   const [ createOrder ] = useMutation(CREATE_ORDER,
-   { onError: (error) => {
-        setErrorMessage(error.graphQLErrors[0].message)
-      }
-   });
+   const [ createOrder ] = useMutation(CREATE_ORDER, {
+    refetchQueries:[ { query: ALL_ORDERS } ]
+    });
 
    const notify = (message) => {
     setErrorMessage(message)

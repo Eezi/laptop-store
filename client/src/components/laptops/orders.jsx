@@ -1,14 +1,29 @@
 import React, { useState } from 'react';
 import styles from './orders.module.css';
 import { Navbar } from '..';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { ALL_ORDERS } from '../../queries';
+import { REMOVE_ORDER } from '../../queries';
 
 const Orders = (props) => {
     const result = useQuery(ALL_ORDERS);
+    const [ deleteOrder ] = useMutation(REMOVE_ORDER, {
+        refetchQueries:[ { query: ALL_ORDERS } ]
+    });
+    const [price, setPrice] = useState('');
+   const [productName, setProductName] = useState('');
+   const [id, setId] = useState('')
 
-    const deleteOrder = (e) => {
-    let id = e.target.id;
+    
+    const poistaTilaus = async(value) => {
+       
+        let productName = value.productName;
+        let price = value.price;
+        deleteOrder({ variables: { productName, price } })
+
+        setPrice(productName)
+        setProductName(price)
+        
    }
 
    if(result.loading) {  
@@ -18,7 +33,7 @@ const Orders = (props) => {
   if(result.error) {
     return <h1 style={{textAlign: "center"}}>Something went wrong!</h1> 
   }
-   console.log(result.data.allOrders)
+   
     return (
         <div className={styles.koko}>
             <Navbar /> 
@@ -30,7 +45,7 @@ const Orders = (props) => {
                     <p> {order.productName}
                         <br />
                         {order.price}
-                        <button onClick={() => console.log(order.id)}>X</button>
+                        <button key={order.id} value={order} onClick={() =>poistaTilaus(order)}>X</button>
                     </p>
                    
                 </div>

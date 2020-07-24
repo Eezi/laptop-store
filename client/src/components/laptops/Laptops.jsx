@@ -5,15 +5,6 @@ import { Link } from 'react-router-dom';
 const Laptops = ({ data }) =>  {
     const [items, setItems ] = useState([]); 
 
-   const dataFilter = () => {
-       for(var item of data){
-         if(item.id === data.id){
-             setItems(items.push(item));
-            
-        }
-       }
-    }
-
     const id = data.id;
    
     return(
