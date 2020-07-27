@@ -1,11 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './App.module.css';
 import {  Laptops, Navbar } from './components';
 import { useQuery } from '@apollo/client';
 import { ALL_LAPTOPS } from './queries';
 
-function App() {
 
+const Notify = ({errorMessage}) => {
+  if(!errorMessage) {
+      return null
+  }
+  return(
+      alert({errorMessage})
+  )
+}
+
+function App() {
+  const [errorMessage, setErrorMessage] = useState(null);
   const result = useQuery(ALL_LAPTOPS);
 
   if(result.loading) {  
@@ -17,12 +27,18 @@ function App() {
    
    
   }
-  
+
+  const notify = (message) => {
+    setErrorMessage(message)
+    setTimeout(() => {
+      setErrorMessage(null)
+    }, 10000)
+  }
  
   return (
     <div className="App">
           <Navbar />
-  
+          <Notify errorMessage={errorMessage} />
         <div className={styles.Container}>
        
             <h1>The Laptop Store</h1>
@@ -31,7 +47,7 @@ function App() {
             <div className={styles.cards_container}>
               {result.data.allLaptops.map(laptop => (
                 
-                <Laptops key={laptop.id} data={laptop} />
+                <Laptops key={laptop.id} data={laptop}  />
                 
               )
               )}

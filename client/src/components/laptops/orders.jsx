@@ -12,7 +12,7 @@ const Orders = (props) => {
     });
     const [price, setPrice] = useState('');
    const [productName, setProductName] = useState('');
-   const [id, setId] = useState('')
+  
 
     
     const poistaTilaus = async(value) => {
@@ -33,16 +33,18 @@ const Orders = (props) => {
   if(result.error) {
     return <h1 style={{textAlign: "center"}}>Something went wrong!</h1> 
   }
-   
+   console.log('pituus: ',result.data.allOrders.length )
+   if(result.data.allOrders.length){
+
     return (
         <div className={styles.koko}>
-            <Navbar /> 
-            
+        <Navbar />
+       
             <ol>
             {result.data.allOrders.map((order) => (
             <li key={order.id}>
                 <div className={styles.order}>
-                    <p> {order.productName}
+                    <p> {order.productName} 
                         <br />
                         {order.price}
                         <button key={order.id} value={order} onClick={() =>poistaTilaus(order)}>X</button>
@@ -55,9 +57,18 @@ const Orders = (props) => {
             }
                
             </ol>
+             
+       
             
         </div>
     );
+}
+    return(
+    <div style={{ height: '100vh' }} > 
+        <Navbar /> 
+        <h2 style={{ margin: '100px auto', textAlign: 'center'}}>Your shopping cart is empty!</h2>
+    </div>
+    )
 
 }
 

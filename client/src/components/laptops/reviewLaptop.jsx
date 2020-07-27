@@ -6,33 +6,17 @@ import { useMutation } from '@apollo/client';
 import { CREATE_ORDER, ALL_ORDERS } from '../../queries';
 
 const ReviewLaptop = (props) => {
+   console.log(props)
    const [price, setPrice] = useState('');
    const [productName, setProductName] = useState('');
-   const [errorMessage, setErrorMessage] = useState(null);
+   
+   
 
    const [ createOrder ] = useMutation(CREATE_ORDER, {
-    refetchQueries:[ { query: ALL_ORDERS } ]
+    refetchQueries:[ { query: ALL_ORDERS } ],
+   
     });
 
-   const notify = (message) => {
-    setErrorMessage(message)
-    setTimeout(() => {
-      setErrorMessage(null)
-    }, 10000)
-  }
-
-  const Notify = ({errorMessage}) => {
-    if ( !errorMessage ) {
-      return null
-    }
-    return (
-      <div style={{color: 'red'}}>
-        {errorMessage}
-      </div>
-    )
-  }
-  
- 
    const info = props.location.state.data;
    
   
@@ -51,7 +35,7 @@ const ReviewLaptop = (props) => {
     return(
         <div>
             <Navbar />
-            <Notify errorMessage={errorMessage} />
+            
             <div className={styles.containerr}>
                 
                 <div className={styles.laptopp}>

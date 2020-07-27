@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server-express');
+const { gql, UserInputError } = require('apollo-server-express');
 const cors = require('cors');
 import { Lappari, Order } from "./Laptop";
 import mongoose from 'mongoose';
@@ -68,8 +68,8 @@ export const resolvers = {
     Mutation: {
         addOrder: async(_, { 
             productName,
-            price
-            
+            price 
+       
             
          }) => {
              const item = new Order({

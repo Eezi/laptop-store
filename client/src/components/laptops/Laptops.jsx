@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Laptops = ({ data }) =>  {
     const [items, setItems ] = useState([]); 
-
+    
     const id = data.id;
    
     return(
@@ -24,7 +24,8 @@ const Laptops = ({ data }) =>  {
                     <Link to={{
                         pathname:`/review/${data.id}`,
                         state: {
-                           data
+                           data,
+                           
                         }
                         }}>
                         <p className={styles.card_link} >Check it out </p>
