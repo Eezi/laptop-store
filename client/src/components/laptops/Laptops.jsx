@@ -8,7 +8,7 @@ const Laptops = ({ data }) =>  {
     const id = data.id;
    
     return(
-
+           
            <div className={styles.cards_container}>
 
             <div className={styles.card}>

@@ -6,8 +6,11 @@
 }
 
 .card_hero {
+   
     position: relative;
 }
+
+
 
 .card_hero::before {
     content: '';
@@ -97,4 +100,3 @@
     font-size: 2rem;
     margin-right: 1rem;
 }
-
