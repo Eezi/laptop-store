@@ -33,12 +33,6 @@ const Orders = (props) => {
         let price = parseInt(value.price); 
         setQuantity(quantity.concat(price));
         console.log(quantity.length)
-        if(quantity.length >= 0){
-
-       /*var summa = quantity.reduce((sum, value) => {
-            return sum + value;
-        }, 0)*/
-        }
        
         setLasku(lasku + price)
         
@@ -53,7 +47,7 @@ const Orders = (props) => {
         }
 }
 
-console.log(lasku)
+
 
    if(result.loading) {  
     return <h2 style={{textAlign: "center"}}>Loading...</h2>
@@ -62,6 +56,11 @@ console.log(lasku)
   if(result.error) {
     return <h1 style={{textAlign: "center"}}>Something went wrong!</h1> 
   }
+  let itemit = result.data.allOrders.map(item => item.productName)
+
+ 
+ 
+
    if(result.data.allOrders.length){
 
     return (

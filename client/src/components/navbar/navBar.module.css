@@ -1,30 +1,50 @@
 header {
-    background: rgb(0, 219, 146);
+    background: #5aaa9d;
     display: grid;
+    width: 100%;
     grid-template-columns: repeat(2,auto);
+    z-index: 999;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 65px;
+    
 }
-.logo, li a {
-    padding: 1em 2em;
+.logo {
+    padding: .8em 1.5em;
     display: block;
     text-transform: uppercase;
     text-decoration: none;
     font-weight: bold;
     color: white;
-    font-size: .9em;
+    font-size: 2em;
 }
-nav {
+.nav {
     justify-self: right;
+    z-index: 999;
 }
 ul {
     list-style-type: none;
+    
+}
+ul a {
+    text-decoration: none;
+   
 }
 li {
+    font-size: 2.1rem;
     display: inline;
+    padding: 0 1em;
+    text-decoration: none;
 }
-li a {
-    padding: 1em 2em;
-    display: inline-block;
-    background: rgba(0,0,0,0.1);
+
+li a:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+li a:visited {
+    color: #222;
 }
 
 @media(max-width: 650px) {

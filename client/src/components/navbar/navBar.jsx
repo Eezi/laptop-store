@@ -9,17 +9,19 @@ const Navbar = () => {
     return (
         <header className={styles.navi}>
              <div className={styles.logo}>Laptop Store</div>
-            <ul>
-               
+            <div className={styles.nav}>
+               <ul>
                 <Link to="/"> 
-                    <li>Store</li>
+                    <li style={{fontSize: '30px', color: '#222'}}>Store</li>
                 </Link>
                 <Link to={{pathname: "/orders"}}>
-                  <li><ShoppingCartOutlinedIcon style={{marginTop: '6px', fontSize: '30px'}} /></li>
+                  <li><ShoppingCartOutlinedIcon style={{ color: '#222', fontSize: '35px'}} /></li>
                 </Link>
                 
                 
             </ul>
+            </div>
+            
         </header>
     );
 

@@ -2,16 +2,15 @@ import React, { useState } from 'react';
 import styles from './reviewLaptop.module.css';
 import { Navbar } from '..';
 import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { CREATE_ORDER, ALL_ORDERS } from '../../queries';
 
 const ReviewLaptop = (props) => {
-   console.log(props)
+
+   const result = useQuery(ALL_ORDERS);
    const [price, setPrice] = useState('');
    const [productName, setProductName] = useState('');
    
-   
-
    const [ createOrder ] = useMutation(CREATE_ORDER, {
     refetchQueries:[ { query: ALL_ORDERS } ],
    
@@ -24,13 +23,21 @@ const ReviewLaptop = (props) => {
         let productName = info.productName;
         let price = info.price
 
-        createOrder({ variables: { productName, price } })
+        let hasDuplicate = itemit.some((val, i) => itemit.indexOf(val) !== i);
 
-        setPrice(price);
-        setProductName(productName);
+        if(!hasDuplicate){
+            createOrder({ variables: { productName, price } })
+
+            setPrice(price);
+            setProductName(productName);
+        }
+        
     }
-    
-   
+    if(result.loading) {  
+        return <h2 style={{textAlign: "center"}}>Loading...</h2>
+      }
+
+   let itemit = result.data.allOrders.map(i => i.productName)
 
     return(
         <div>
