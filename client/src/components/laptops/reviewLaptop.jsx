@@ -10,35 +10,63 @@ const ReviewLaptop = (props) => {
    const result = useQuery(ALL_ORDERS);
    const [price, setPrice] = useState('');
    const [productName, setProductName] = useState('');
-   
+   const [extra, setExtra] = useState([]);
    const [ createOrder ] = useMutation(CREATE_ORDER, {
     refetchQueries:[ { query: ALL_ORDERS } ],
    
     });
 
    const info = props.location.state.data;
-   
+  
   
    const handleOrder = async() => {
         let productName = info.productName;
         let price = info.price
 
-        let hasDuplicate = itemit.some((val, i) => itemit.indexOf(val) !== i);
+        if(!checkForDuplicates(mongoItemit)){
+            for(let i of mongoItemit){
+                if(i === productName){
+                    alert('itemi on jo ostoskorissa')
+                }else{
+                    createOrder({ variables: { productName, price } })
 
-        if(!hasDuplicate){
-            createOrder({ variables: { productName, price } })
-
-            setPrice(price);
-            setProductName(productName);
-        }
+                    setPrice(price);
+                    setProductName(productName);
+                }
+            }
+            
+        } 
+            
         
+       /* console.log(mongoItemit)
+       mongoItemit.filter(i => {
+            console.log(mongoItemit)
+            if(i === productName){
+               // console.log(mongoItemit)
+               // setExtra(extra.concat(i));
+               console.log(mongoItemit)
+                mongoItemit.pop(i);
+              //  
+            }else {
+                createOrder({ variables: { productName, price } })
+                setPrice(price);
+                setProductName(productName);
+            }
+        })*/
+      
     }
     if(result.loading) {  
         return <h2 style={{textAlign: "center"}}>Loading...</h2>
       }
 
-   let itemit = result.data.allOrders.map(i => i.productName)
-
+   let mongoItemit = result.data.allOrders.map(i => i.productName)
+  
+   //Tarkistaa onko listassa samanimisiä itemejä
+   const checkForDuplicates = (array) => {
+    return new Set(array).size !== array.length
+  }
+    
+    
     return(
         <div>
             <Navbar />
@@ -64,7 +92,7 @@ const ReviewLaptop = (props) => {
                     </p>
                     <Link style={{textDecoration: 'none'}} to="/orders" >
                         <p onClick={handleOrder} className={styles.laptop_link} >Buy now for {info.price}€</p>
-                    </Link>
+                   </Link> 
                    
                 </div>
              
