@@ -23,38 +23,25 @@ const ReviewLaptop = (props) => {
         let productName = info.productName;
         let price = info.price
 
-        if(!checkForDuplicates(mongoItemit)){
+        //if(!checkForDuplicates(mongoItemit)){
+            let item = [];
             for(let i of mongoItemit){
                 if(i === productName){
-                    alert('itemi on jo ostoskorissa')
-                }else{
+                    item.push(i);
+                }
+            }
+           console.log(item)
+               if(item.length){
+                alert('itemi on jo ostoskorissa')
+               }else{
                     createOrder({ variables: { productName, price } })
 
                     setPrice(price);
                     setProductName(productName);
-                }
-            }
-            
-        } 
-            
-        
-       /* console.log(mongoItemit)
-       mongoItemit.filter(i => {
-            console.log(mongoItemit)
-            if(i === productName){
-               // console.log(mongoItemit)
-               // setExtra(extra.concat(i));
-               console.log(mongoItemit)
-                mongoItemit.pop(i);
-              //  
-            }else {
-                createOrder({ variables: { productName, price } })
-                setPrice(price);
-                setProductName(productName);
-            }
-        })*/
+                
+               }
       
-    }
+   }
     if(result.loading) {  
         return <h2 style={{textAlign: "center"}}>Loading...</h2>
       }
