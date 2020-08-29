@@ -10,7 +10,8 @@ const laptopSchema = new Schema({
     storage: String,
     screen: String,
     price: String,
-    description: String
+    description: String,
+    quantity: String
 })
 export const Lappari = mongoose.model("Lappari",
  {
@@ -21,12 +22,13 @@ export const Lappari = mongoose.model("Lappari",
     storage: String,
     screen: String,
     price: String,
-    description: String 
+    description: String,
+    quantity: String
  });
 
  export const Order = mongoose.model("Order",
  {
      productName: String,
-     price: String
-     
+     price: String,
+     quantity: String
  } );

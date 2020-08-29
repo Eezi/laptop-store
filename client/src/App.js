@@ -27,7 +27,7 @@ function App() {
    
    
   }
-
+console.log('reeesss', result)
   const notify = (message) => {
     setErrorMessage(message)
     setTimeout(() => {

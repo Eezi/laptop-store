@@ -15,12 +15,14 @@ export const typeDefs = gql`
         screen: String
         price: String!
         description: String
+        quantity: Int
     }
 
     type Order {
         id: ID
         productName: String!
         price: String!
+        quantity: Int
     }
 
     type Query {
@@ -41,12 +43,15 @@ export const typeDefs = gql`
             screen: String
             price: String!
             description: String 
+            quantity: Int
         ): Laptop
 
         removeOrder(
             id: ID
             price: String!
             productName: String!
+            quantity: Int
+
         ):Order
     }
 
@@ -68,14 +73,14 @@ export const resolvers = {
     Mutation: {
         addOrder: async(_, { 
             productName,
-            price 
-       
+            price, 
+            quantity
             
          }) => {
              const item = new Order({
                 productName,
-                price
-                
+                price,
+                quantity
              });
              await item.save();
              return item;
@@ -84,12 +89,14 @@ export const resolvers = {
         removeOrder: async(_, {
             id,
             productName,
-            price
+            price,
+            quantity
         }) => {
             return await Order.findOneAndRemove({
                 id,
                 productName,
-                price
+                price,
+                quantity
             });
         }
     }

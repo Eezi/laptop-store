@@ -4,18 +4,21 @@ import { Navbar } from '..';
 import { useQuery, useMutation } from '@apollo/client';
 import { ALL_ORDERS } from '../../queries';
 import { REMOVE_ORDER } from '../../queries';
-import Icon from '@material-ui/core/Icon';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 
 const Orders = (props) => {
-    const result = useQuery(ALL_ORDERS);
+    const result = useQuery(ALL_ORDERS, {
+        fetchPolicy: 'no-cache'
+    });
     const [ deleteOrder ] = useMutation(REMOVE_ORDER, {
         refetchQueries:[ { query: ALL_ORDERS } ]
     });
     const [price, setPrice] = useState('');
     const [productName, setProductName] = useState('');
-    const [quantity, setQuantity] = useState([]);
+    const [quantity, setQuantity] = useState([1]);
     const [lasku, setLasku] = useState(0);
+
 
     const poistaTilaus = async(value) => {
        
@@ -30,18 +33,27 @@ const Orders = (props) => {
 
 
    const tilauksenLisäys = (value) => {
+       console.log('value', value)
         let price = parseInt(value.price); 
+
+        
         setQuantity(quantity.concat(price));
         console.log(quantity.length)
-       
-        setLasku(lasku + price)
+        setLasku(lasku + (price * 2))
         
+        if(quantity.length > 1){
+            setLasku(lasku + price)
+            console.log('Lasku:', lasku)
+        }
+       
    }
 
    const tilauksenVähennys = (value) => {
     let price = parseInt(value.price);  
-    
-        setQuantity(quantity.slice(1));
+        if(quantity.length > 1){   
+            setQuantity(quantity.slice(1));
+        }
+       
         if(lasku > 0) {
             setLasku(lasku - price);
         }
@@ -59,7 +71,7 @@ const Orders = (props) => {
   let itemit = result.data.allOrders.map(item => item.productName)
 
  
- 
+console.log('props', result) 
 
    if(result.data.allOrders.length){
 
@@ -71,15 +83,24 @@ const Orders = (props) => {
             {result.data.allOrders.map((order) => (
             <li key={order.id}>
                 <div className={styles.order}>
-                    <p> {order.productName} <span style={{float: 'right', marginRight: '20px'}}>Lasku: {lasku === 0 ? order.price : lasku}€</span>
+                    <p> {order.productName} <span style={{float: 'right', marginRight: '35px'}}>Lasku: {lasku === 0 ? order.price : lasku}€</span>
                         <br />
                         {order.price}€
                        
                         
-                            <span style={{float: 'right'}}>{quantity.length >= 0 ? quantity.length : '1'}</span>
-                        <button key={order.price} value={order} onClick={() =>tilauksenLisäys(order)}>+</button>
-                        <button key={order.productName} value={order} onClick={() =>tilauksenVähennys(order)}>-</button>
-                        <button key={order.id} value={order} onClick={() =>poistaTilaus(order)}>X</button>
+                            
+                        <button className={styles.plus} key={order.price} value={order} onClick={() =>tilauksenLisäys(order)}>+</button>
+                        <span style={{float: 'right', width: '30px', height: '30px', textAlign: 'center', marginRight: '20px', border: '1px solid #333'}}>{quantity.length }</span>
+                        <button className={styles.minus} key={order.productName} value={order} onClick={() =>tilauksenVähennys(order)}>-</button>
+                        <DeleteIcon key={order.id} value={order} onClick={() =>poistaTilaus(order)}
+                         style={{
+                             fontSize: '30px', 
+                             float: 'right',
+                             textAlign: 'center',
+                             marginRight: '20px',
+                             marginBlock: '10px'
+                            }} 
+                         />
                     </p>
                    
                 </div>
