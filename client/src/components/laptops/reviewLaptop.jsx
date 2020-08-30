@@ -17,7 +17,7 @@ const ReviewLaptop = (props) => {
     });
 
    const info = props.location.state.data;
-  
+  console.log('info', info)
   
    const handleOrder = async() => {
         let productName = info.productName;

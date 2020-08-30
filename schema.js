@@ -7,7 +7,7 @@ import mongoose from 'mongoose';
 export const typeDefs = gql`
     type Laptop {
         id: ID
-        productName: String!
+        productName: String
         image: String
         cpu: String
         ram: String
@@ -67,8 +67,6 @@ export const resolvers = {
         allLaptops: () => Lappari.find(),
         allOrders: () => Order.find(),
         findLaptop: (root, args) => Lappari.findOne({ productName: args.productName }),
-      
-        
     },
     Mutation: {
         addOrder: async(_, { 
@@ -85,7 +83,18 @@ export const resolvers = {
              await item.save();
              return item;
          },
-       
+
+         addQuantity: async(_, {
+             quantity
+         }) => {
+            const doc = await Order.findOneAndUpdate({
+                id: painettuID
+            }, { $set: quantity + 1 }, { upsert: true });
+
+             await plusQuantity.save();
+             return plusQuantity;
+         },
+
         removeOrder: async(_, {
             id,
             productName,
